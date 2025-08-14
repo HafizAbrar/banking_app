@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 import '../../../../../Common_Widgets/custom_single_card.dart';
-import '../Cards/cards_screen.dart';
+import '../Cards/addCard_screen.dart';
 
 class AccountScreen extends StatefulWidget {
   const AccountScreen({super.key});
@@ -105,6 +105,11 @@ class _AccountScreenState extends State<AccountScreen> {
                           child: ElevatedButton(
                             onPressed:
                                 () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => const AddCardScreen()),
+                                  );
                             }, // Disabled when form not valid
                             style: ElevatedButton.styleFrom(
                               padding: const EdgeInsets.symmetric(vertical: 20),

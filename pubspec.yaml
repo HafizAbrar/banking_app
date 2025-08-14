@@ -19,7 +19,8 @@ publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 version: 1.0.0+1
 
 environment:
-  sdk: ^3.8.1
+  sdk: ">=2.18.0 <4.0.0"
+
 
 # Dependencies specify other packages that your package needs in order to work.
 # To automatically upgrade your package dependencies to the latest versions
@@ -36,7 +37,7 @@ dependencies:
   latlong2: ^0.9.0
   geolocator: ^14.0.2
   http: ^1.2.1
-  local_auth: ^2.1.6
+  local_auth: ^2.2.1
   dropdown_search: ^6.0.2
   flutter_svg: ^2.0.7
   app_settings: ^6.1.1
