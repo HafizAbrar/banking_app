@@ -3,6 +3,7 @@ import 'package:velocity_x/velocity_x.dart';
 
 import '../../../../../Common_Widgets/custom_single_card.dart';
 import '../Cards/addCard_screen.dart';
+import '../Cards/card_detail_screen.dart';
 
 class AccountScreen extends StatefulWidget {
   const AccountScreen({super.key});
@@ -48,7 +49,6 @@ class _AccountScreenState extends State<AccountScreen> {
                 }),
                 const SizedBox(width: 10),
                 _buildTabButton("Card", !isAccountSelected, () {
-
                   setState(() => isAccountSelected = false);
                 }),
               ],
@@ -56,79 +56,88 @@ class _AccountScreenState extends State<AccountScreen> {
             const SizedBox(height: 20),
             Flexible(
               child: Container(
-                color: Colors.transparent,
-                child: SingleChildScrollView(
-                  physics: BouncingScrollPhysics(),
-                  child: Column(
-                    children: [
-                      if (isAccountSelected) ...[
-                        // Profile Image
-                        CircleAvatar(
-                          radius: 60,
-                          backgroundImage:  AssetImage('assets/images/profile_img.jpeg',),// Replace
-                        ),
-                        const SizedBox(height: 10),
-                        Text(
-                          "Sabri Sahib",
-                          style: TextStyle(
-                            color: Colors.blue[900],
-                            fontSize: 18,
-                            fontWeight: FontWeight.w600,
+                  color: Colors.transparent,
+                  child: SingleChildScrollView(
+                    physics: BouncingScrollPhysics(),
+                    child: Column(
+                      children: [
+                        if (isAccountSelected) ...[
+                          // Profile Image
+                          CircleAvatar(
+                            radius: 60,
+                            backgroundImage: AssetImage(
+                              'assets/images/profile_img.jpeg',), // Replace
                           ),
-                        ),
-                        const SizedBox(height: 20),
-                        // Show Account list for now (later we will show Cards)
+                          const SizedBox(height: 10),
+                          Text(
+                            "Sabri Sahib",
+                            style: TextStyle(
+                              color: Colors.blue[900],
+                              fontSize: 18,
+                              fontWeight: FontWeight.w600,
+                            ),
+                          ),
+                          const SizedBox(height: 20),
+                          // Show Account list for now (later we will show Cards)
 
-                        _accountTile(
-                            "Account 1", "1900 8988 1234", "\$20,000", "New York"),
-                        _accountTile("Account 2", "8988 1234", "\$12,000", "New York"),
-                        _accountTile(
-                            "Account 3", "1900 1234 2222", "\$230,000", "New York"),
-                      ] else ...[
-                        CustomSingleCard(
-                            ownerName: 'Sabri Sahib',
-                            cardName: 'Amazon Platinum',
-                            cardNumber: '1234 **** **** 3456',
-                            balance: '\$20,000',
-                            cardImage: 'assets/images/master_card.png'),
-                        //const SizedBox(height: 15),
-                        CustomSingleCard(
-                            ownerName: 'Sabri Sahib',
-                            cardName: 'Amazon Platinum',
-                            cardNumber: '1234 **** **** 3456',
-                            balance: '\$15,000',
-                            cardImage: 'assets/images/visa_card.png'),
-                        const SizedBox(height: 20),
-                        SizedBox(
+                          _accountTile(
+                              "Account 1", "1900 8988 1234", "\$20,000",
+                              "New York"),
+                          _accountTile(
+                              "Account 2", "8988 1234", "\$12,000", "New York"),
+                          _accountTile(
+                              "Account 3", "1900 1234 2222", "\$230,000",
+                              "New York"),
+                        ] else
+                          ...[
+                            CustomSingleCard(
+                                ownerName: 'Sabri Sahib',
+                                cardName: 'Amazon Platinum',
+                                cardNumber: '1234 **** **** 3456',
+                                balance: '\$20,000',
+                                cardImage: 'assets/images/master_card.png'),
+                            //const SizedBox(height: 15),
+                            CustomSingleCard(
+                                ownerName: 'Sabri Sahib',
+                                cardName: 'Amazon Platinum',
+                                cardNumber: '1234 **** **** 3456',
+                                balance: '\$15,000',
+                                cardImage: 'assets/images/visa_card.png'),
+                            const SizedBox(height: 20),
+                            SizedBox(
 
-                          width: context.screenWidth-80,
-                          child: ElevatedButton(
-                            onPressed:
-                                () {
+                              width: context.screenWidth - 80,
+                              child: ElevatedButton(
+                                onPressed:
+                                    () {
                                   Navigator.push(
                                     context,
                                     MaterialPageRoute(
-                                        builder: (context) => const AddCardScreen()),
+                                        builder: (
+                                            context) => const AddCardScreen()),
                                   );
-                            }, // Disabled when form not valid
-                            style: ElevatedButton.styleFrom(
-                              padding: const EdgeInsets.symmetric(vertical: 20),
-                              backgroundColor: Colors.blue[900],
-                              disabledBackgroundColor: Colors.grey[200],
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(20),
+                                }, // Disabled when form not valid
+                                style: ElevatedButton.styleFrom(
+                                  padding: const EdgeInsets.symmetric(
+                                      vertical: 20),
+                                  backgroundColor: Colors.blue[900],
+                                  disabledBackgroundColor: Colors.grey[200],
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(20),
+                                  ),
+                                ),
+                                child: const Text(
+                                  'Add Card',
+                                  style: TextStyle(fontSize: 16,
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.white),
+                                ),
                               ),
                             ),
-                            child: const Text(
-                              'Add Card',
-                              style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold,color: Colors.white),
-                            ),
-                          ),
-                        ),
-                      ]
-                    ],
-                  ),
-                )
+                          ]
+                      ],
+                    ),
+                  )
               ),
             ),
           ],
@@ -160,68 +169,88 @@ class _AccountScreenState extends State<AccountScreen> {
     );
   }
 
-  static Widget _accountTile(
-      String title, String accountNumber, String balance, String branch) {
-    return Container(
+   Widget _accountTile(String title,
+      String accountNumber,
+      String balance,
+      String branch, {
+        VoidCallback? onTap, // optional callback when tile is clicked
+      }) {
+    return InkWell(
+      onTap: onTap ?? () {
+        // Default action if no callback is provided
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (_) => CardDetailScreen(
+              cardNumber: "1234 5678 9012 3456",
+              ownerName: "John Doe",
+              validFrom: "01/23",
+              validTo: "01/28",
+              availableBalance: 2500.75,
+            ),
+          ),
+        );
 
-      width: double.infinity,
-      margin: const EdgeInsets.symmetric(vertical: 8),
-      padding: const EdgeInsets.all(15),
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(12),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.grey.shade200,
-            blurRadius: 10,
-            offset: const Offset(0, 4),
-          ),
-        ],
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(title,
-                  style:
-                  const TextStyle(fontWeight: FontWeight.w600, fontSize: 16)),
-              const SizedBox(height: 4),
-              Text(accountNumber,
-                  style:
-                  const TextStyle(fontWeight: FontWeight.w500, fontSize: 14)),
-            ],
-          ),
-
-          const SizedBox(height: 8),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              const Text("Available balance",
-                  style: TextStyle(color: Colors.grey, fontSize: 12)),
-              Text(balance,
-                  style: const TextStyle(
-                      color: Colors.blue,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 16)),
-            ],
-          ),
-
-          const SizedBox(height: 4),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              const Text("Branch",
-                  style: TextStyle(color: Colors.grey, fontSize: 12)),
-              Text(branch,
-                  style: const TextStyle(
-                      color: Colors.blue,
-                      fontWeight: FontWeight.w600,
-                      fontSize: 14)),
-            ],
-          ),
-        ],
+      },
+      borderRadius: BorderRadius.circular(12),
+      child: Container(
+        width: double.infinity,
+        margin: const EdgeInsets.symmetric(vertical: 8),
+        padding: const EdgeInsets.all(15),
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(12),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.grey.shade200,
+              blurRadius: 10,
+              offset: const Offset(0, 4),
+            ),
+          ],
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(title,
+                    style: const TextStyle(
+                        fontWeight: FontWeight.w600, fontSize: 16)),
+                const SizedBox(height: 4),
+                Text(accountNumber,
+                    style: const TextStyle(
+                        fontWeight: FontWeight.w500, fontSize: 14)),
+              ],
+            ),
+            const SizedBox(height: 8),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                const Text("Available balance",
+                    style: TextStyle(color: Colors.grey, fontSize: 12)),
+                Text(balance,
+                    style: const TextStyle(
+                        color: Colors.blue,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 16)),
+              ],
+            ),
+            const SizedBox(height: 4),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                const Text("Branch",
+                    style: TextStyle(color: Colors.grey, fontSize: 12)),
+                Text(branch,
+                    style: const TextStyle(
+                        color: Colors.blue,
+                        fontWeight: FontWeight.w600,
+                        fontSize: 14)),
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }
