@@ -4,6 +4,7 @@ import 'package:velocity_x/velocity_x.dart';
 import '../../Common_Widgets/custom_button.dart';
 import '../../Common_Widgets/custom_multi_card.dart';
 import 'Home_Screen_Buttons/Accounts_&_Cards/Accounts/accounts_&_card_screen.dart';
+import 'Home_Screen_Buttons/Transfer_Screens/transfer_screen.dart';
 import 'Home_Screen_Buttons/Withdraw/withdraw_specificAmount_screen.dart';
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -60,7 +61,8 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
       ),
       body: Container(
-        height: context.screenHeight*0.8,
+        //height: context.screenHeight*0.8,
+        height: double.infinity,
         width: double.infinity,
         decoration: BoxDecoration(
           color: Colors.white,
@@ -96,7 +98,9 @@ class _HomeScreenState extends State<HomeScreen> {
                         Navigator.push(context, MaterialPageRoute(builder: (context)=> AccountScreen()));
                       }),
                       SizedBox(width: 10,),
-                      customButton(title: 'Transfer', icon:'assets/icons/transfer.png' , onPress: (){}),
+                      customButton(title: 'Transfer', icon:'assets/icons/transfer.png' , onPress: (){
+                        Navigator.push(context, MaterialPageRoute(builder: (context)=> TransferScreen()));
+                      }),
                       SizedBox(width: 10,),
                       customButton(title: 'Withdraw', icon:'assets/icons/withdraw.png' , onPress: (){
                         Navigator.push(context, MaterialPageRoute(builder: (context)=> WithdrawScreen()));

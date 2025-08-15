@@ -82,13 +82,14 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
         child: AppBar(
           backgroundColor: Colors.white,
           elevation: 0,
-          leading: IconButton(
-            icon: const Icon(Icons.arrow_back_ios, color: Colors.black),
-            onPressed: () => Navigator.pop(context),
-          ),
+          // leading: IconButton(
+          //   icon: const Icon(Icons.arrow_back_ios, color: Colors.black),
+          //   onPressed: () => Navigator.pop(context),
+          // ),
+          automaticallyImplyLeading: false,
           title: Text(
             "Card Details",
-            style: const TextStyle(
+            style:  TextStyle(
                 color: Colors.black, fontSize: 20, fontWeight: FontWeight.bold),
           ),
           centerTitle: false,
