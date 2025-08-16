@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:local_auth/local_auth.dart';
+import 'package:mobile_banking/Screens/Home_Screens/Home_Screen_Buttons/Transfer_Screens/transfer_success_screen.dart';
 import '../../../../Common_Widgets/custom_textfield.dart';
 
 enum AuthMethod { none, fingerprint, faceScan, pin }
@@ -8,12 +9,14 @@ AuthMethod selectedMethod = AuthMethod.none;
 class ConfirmTransferScreen extends StatefulWidget {
   final String senderAccount;
   final String beneficiaryName;
+  final String beneficiaryBank;
   final String beneficiaryAccount;
   final String transferContent;
   final double amount;
 
   const ConfirmTransferScreen({
     super.key,
+    required this.beneficiaryBank,
     required this.senderAccount,
     required this.beneficiaryName,
     required this.beneficiaryAccount,
@@ -117,7 +120,7 @@ class _ConfirmTransferScreenState extends State<ConfirmTransferScreen> {
       body: SingleChildScrollView(
         physics: const BouncingScrollPhysics(),
         child: Padding(
-          padding: const EdgeInsets.all(20.0),
+          padding: const EdgeInsets.only(top: 16, left: 16, right: 16, bottom: 50),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -225,8 +228,14 @@ class _ConfirmTransferScreenState extends State<ConfirmTransferScreen> {
           ),
           onPressed: isConfirmEnabled
               ? () {
-            ScaffoldMessenger.of(context).showSnackBar(
-              const SnackBar(content: Text('Transaction confirmed!')),
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => TransferConfirmationScreen(
+                  beneficiaryName: widget.beneficiaryName,
+                  amount: widget.amount,
+                ),
+              ),
             );
           }
               : null,
