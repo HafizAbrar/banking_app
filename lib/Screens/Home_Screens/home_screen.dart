@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:mobile_banking/Screens/Home_Screens/Home_Screen_Buttons/Mobile_Recharge_Screens/recharge_screen.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 import '../../Common_Widgets/custom_button.dart';
 import '../../Common_Widgets/custom_multi_card.dart';
 import 'Home_Screen_Buttons/Accounts_&_Cards/Accounts/accounts_&_card_screen.dart';
+import 'Home_Screen_Buttons/Beneficiary_Screens/beneficiaries_screen.dart';
 import 'Home_Screen_Buttons/Transfer_Screens/transfer_screen.dart';
 import 'Home_Screen_Buttons/Withdraw/withdraw_specificAmount_screen.dart';
 class HomeScreen extends StatefulWidget {
@@ -112,7 +114,9 @@ class _HomeScreenState extends State<HomeScreen> {
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      customButton(title: 'Mobile Prepaid', icon:'assets/icons/prepaid.png' , onPress: (){}),
+                      customButton(title: 'Mobile Prepaid', icon:'assets/icons/prepaid.png' , onPress: (){
+                        Navigator.push(context, MaterialPageRoute(builder: (context)=> RechargeScreen()));
+                      }),
                       SizedBox(width: 10,),
                       customButton(title: 'Pay the bill', icon:'assets/icons/pay_the_bill.png' , onPress: (){}),
                       SizedBox(width: 10,),
@@ -128,7 +132,9 @@ class _HomeScreenState extends State<HomeScreen> {
                       SizedBox(width: 10,),
                       customButton(title: 'Transaction Report', icon:'assets/icons/transaction_report.png' , onPress: (){}),
                       SizedBox(width: 10,),
-                      customButton(title: 'Beneficiary', icon:'assets/icons/beneficiary.png' , onPress: (){}),
+                      customButton(title: 'Beneficiary', icon:'assets/icons/beneficiary.png' , onPress: (){
+                        Navigator.push(context, MaterialPageRoute(builder: (context)=> BeneficiaryScreen()));
+                      }),
                     ],
                   ),
                 ],
