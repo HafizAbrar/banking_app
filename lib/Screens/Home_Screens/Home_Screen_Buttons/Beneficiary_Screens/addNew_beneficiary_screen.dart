@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:mobile_banking/Screens/Home_Screens/Home_Screen_Buttons/Beneficiary_Screens/save_beneficiary_screen.dart';
 import 'dart:io';
 
 import '../../../../Common_Widgets/custom_selection_field.dart';
@@ -409,19 +410,14 @@ class _AddNewBeneficiaryScreenState extends State<AddNewBeneficiaryScreen> {
             ),
           ),
             // Choose transaction
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16.0),
-              child: Text(
-                "Choose transaction",
-                style: TextStyle(fontWeight: FontWeight.bold,
-                    fontSize: 14,
-                    color: Colors.grey[500]),
-              ),
+            Text(
+              "Choose transaction",
+              style: TextStyle(fontWeight: FontWeight.bold,
+                  fontSize: 14,
+                  color: Colors.grey[500]),
             ),
             const SizedBox(height: 10),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16.0),
-              child: SizedBox(
+             SizedBox(
                 height: 110, // height of swiper area
                 child: ListView(
                   scrollDirection: Axis.horizontal,
@@ -460,7 +456,6 @@ class _AddNewBeneficiaryScreenState extends State<AddNewBeneficiaryScreen> {
                   ],
                 ),
               ),
-            ),
             const SizedBox(height: 20),
             // Text fields
             // 👇 Conditional rendering based on transaction type
@@ -524,7 +519,7 @@ class _AddNewBeneficiaryScreenState extends State<AddNewBeneficiaryScreen> {
                         keyboardType: TextInputType.number,
                       ),
 
-                      const SizedBox(height: 16),
+                      const SizedBox(height: 40),
                       // Confirm button
                       SizedBox(
                         width: double.infinity,
@@ -532,6 +527,19 @@ class _AddNewBeneficiaryScreenState extends State<AddNewBeneficiaryScreen> {
                           onPressed: _isFormValid
                               ? () {
                             //save beneficiary screen will be here
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => SaveBeneficiaryScreen(
+                                  name: _nameController.text,
+                                  cardNumber: _cardNumberController.text,
+                                  bank: _bankController.text,
+                                  branch: _branchController.text,
+                                  transactionType: selectedTransaction,
+                                  image: _selectedImage,
+                                ),
+                              ),
+                            );
                           }
                               : null, // 🚫 disabled if form invalid
                           style: ElevatedButton.styleFrom(
@@ -544,9 +552,9 @@ class _AddNewBeneficiaryScreenState extends State<AddNewBeneficiaryScreen> {
                             padding: const EdgeInsets.symmetric(vertical: 12),
                           ),
                           child: const Text(
-                            "Save",
+                            "Save to directory",
                             style: TextStyle(
-                              fontSize: 20,
+                              fontSize: 16,
                               color: Colors.white,
                               fontWeight: FontWeight.bold,
                             ),

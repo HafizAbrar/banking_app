@@ -6,6 +6,8 @@ import '../../Common_Widgets/custom_button.dart';
 import '../../Common_Widgets/custom_multi_card.dart';
 import 'Home_Screen_Buttons/Accounts_&_Cards/Accounts/accounts_&_card_screen.dart';
 import 'Home_Screen_Buttons/Beneficiary_Screens/beneficiaries_screen.dart';
+import 'Home_Screen_Buttons/CreditCard_Screens/credit_card_screen.dart';
+import 'Home_Screen_Buttons/Pay_Bills_Screens/pay_the_bill_screen.dart';
 import 'Home_Screen_Buttons/Transfer_Screens/transfer_screen.dart';
 import 'Home_Screen_Buttons/Withdraw/withdraw_specificAmount_screen.dart';
 class HomeScreen extends StatefulWidget {
@@ -118,7 +120,9 @@ class _HomeScreenState extends State<HomeScreen> {
                         Navigator.push(context, MaterialPageRoute(builder: (context)=> RechargeScreen()));
                       }),
                       SizedBox(width: 10,),
-                      customButton(title: 'Pay the bill', icon:'assets/icons/pay_the_bill.png' , onPress: (){}),
+                      customButton(title: 'Pay the bill', icon:'assets/icons/pay_the_bill.png' , onPress: (){
+                        Navigator.push(context, MaterialPageRoute(builder: (context)=> BillPaymentMainScreen()));
+                      }),
                       SizedBox(width: 10,),
                       customButton(title: 'Save Online', icon:'assets/icons/online.png' , onPress: (){}),
                     ],
@@ -128,7 +132,9 @@ class _HomeScreenState extends State<HomeScreen> {
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      customButton(title: 'Credit Card', icon:'assets/icons/credit-card.png' , onPress: (){}),
+                      customButton(title: 'Credit Card', icon:'assets/icons/credit-card.png' , onPress: (){
+                        Navigator.push(context, MaterialPageRoute(builder: (context)=> CreditCardScreen()));
+                      }),
                       SizedBox(width: 10,),
                       customButton(title: 'Transaction Report', icon:'assets/icons/transaction_report.png' , onPress: (){}),
                       SizedBox(width: 10,),

@@ -6,6 +6,8 @@ class CustomTextField extends StatelessWidget {
   final TextInputType keyboardType;
   final EdgeInsetsGeometry padding;
   final bool obscureText;
+  final Function(String)? onChanged;
+
 
   const CustomTextField({
     super.key,
@@ -14,6 +16,7 @@ class CustomTextField extends StatelessWidget {
     this.keyboardType = TextInputType.text,
     this.padding = const EdgeInsets.symmetric(horizontal: 12),
     this.obscureText = false,
+    this.onChanged,
   });
 
   @override
@@ -31,6 +34,7 @@ class CustomTextField extends StatelessWidget {
             child: TextField(
               style: const TextStyle(color: Colors.black, fontSize: 14),
               controller: controller,
+              onChanged: onChanged,
               decoration: InputDecoration(
                 hintText: hintText,
                 border: InputBorder.none,

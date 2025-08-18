@@ -210,38 +210,37 @@ class _ConfirmTransferScreenState extends State<ConfirmTransferScreen> {
                   },
                 ),
               ),
-            ],
-          ),
-        ),
-      ),
-
-      bottomNavigationBar: Padding(
-        padding: const EdgeInsets.all(20.0),
-        child: ElevatedButton(
-          style: ElevatedButton.styleFrom(
-            backgroundColor: isConfirmEnabled ? Colors.blue[900] : Colors.grey[400],
-            foregroundColor: Colors.white,
-            minimumSize: const Size(double.infinity, 50),
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(14),
-            ),
-          ),
-          onPressed: isConfirmEnabled
-              ? () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => TransferConfirmationScreen(
-                  beneficiaryName: widget.beneficiaryName,
-                  amount: widget.amount,
+              Padding(
+                padding: const EdgeInsets.all(20.0),
+                child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: isConfirmEnabled ? Colors.blue[900] : Colors.grey[400],
+                    foregroundColor: Colors.white,
+                    minimumSize: const Size(double.infinity, 50),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(14),
+                    ),
+                  ),
+                  onPressed: isConfirmEnabled
+                      ? () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => TransferConfirmationScreen(
+                          beneficiaryName: widget.beneficiaryName,
+                          amount: widget.amount,
+                        ),
+                      ),
+                    );
+                  }
+                      : null,
+                  child: const Text(
+                    "Confirm Transaction",
+                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                  ),
                 ),
               ),
-            );
-          }
-              : null,
-          child: const Text(
-            "Confirm Transaction",
-            style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+            ],
           ),
         ),
       ),
