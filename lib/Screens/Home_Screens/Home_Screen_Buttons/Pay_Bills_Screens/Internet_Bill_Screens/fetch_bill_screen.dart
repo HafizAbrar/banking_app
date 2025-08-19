@@ -4,31 +4,36 @@ import 'package:mobile_banking/Common_Widgets/custom_textfield.dart';
 
 import 'bill_detail_screen.dart';
 
-class FetchElectricBillScreen extends StatefulWidget {
-  const FetchElectricBillScreen({super.key});
+class FetchInternetBillScreen extends StatefulWidget {
+  const FetchInternetBillScreen({super.key});
 
   @override
-  State<FetchElectricBillScreen> createState() => _FetchElectricBillScreenState();
+  State<FetchInternetBillScreen> createState() => _FetchInternetBillScreenState();
 }
 
-class _FetchElectricBillScreenState extends State<FetchElectricBillScreen> {
+class _FetchInternetBillScreenState extends State<FetchInternetBillScreen> {
   final TextEditingController _companyNameController = TextEditingController();
   final TextEditingController _billNumberController = TextEditingController();
 
   bool _isFormValid = false;
 
-  final List<String> companies = [
-    "LESCO - Lahore Electric Supply Company",
-    "MEPCO - Multan Electric Power Company",
-    "GEPCO - Gujranwala Electric Power Company",
-    "FESCO - Faisalabad Electric Supply Company",
-    "PESCO - Peshawar Electric Supply Company",
-    "QESCO - Quetta Electric Supply Company",
-    "IESCO - Islamabad Electric Supply Company",
-    "HESCO - Hyderabad Electric Supply Company",
-    "SEPCO - Sukkur Electric Power Company",
-    "KE - K-Electric (Karachi)",
+  final List<String> internetCompanies = [
+    "PTCL - Pakistan Telecommunication Company Limited",
+    "StormFiber - Fiber Internet",
+    "Nayatel - Fiber Internet",
+    "Optix - Fiber Internet",
+    "Transworld Home - Internet Services",
+    "Wi-Tribe Pakistan",
+    "WorldCall Internet",
+    "Multinet Pakistan",
+    "Qubee Pakistan",
+    "Zong 4G Internet",
+    "Jazz 4G Internet",
+    "Telenor 4G Internet",
+    "Ufone 4G Internet",
   ];
+
+
 
   @override
   void initState() {
@@ -40,7 +45,7 @@ class _FetchElectricBillScreenState extends State<FetchElectricBillScreen> {
   void _validate() {
     setState(() {
       _isFormValid = _companyNameController.text.isNotEmpty &&
-          _billNumberController.text.isNotEmpty&&_billNumberController.text.length==14;
+          _billNumberController.text.isNotEmpty&&_billNumberController.text.length==9;
     });
   }
 
@@ -57,13 +62,13 @@ class _FetchElectricBillScreenState extends State<FetchElectricBillScreen> {
             width: double.maxFinite,
             child: ListView.builder(
               shrinkWrap: true,
-              itemCount: companies.length,
+              itemCount: internetCompanies.length,
               itemBuilder: (context, index) {
                 return ListTile(
-                  title: Text(companies[index]),
+                  title: Text(internetCompanies[index]),
                   onTap: () {
                     setState(() {
-                      _companyNameController.text = companies[index];
+                      _companyNameController.text = internetCompanies[index];
                     });
                     Navigator.pop(context);
                   },
@@ -167,7 +172,7 @@ class _FetchElectricBillScreenState extends State<FetchElectricBillScreen> {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => ElectricBillDetailsScreen(
+                          builder: (context) => InternetBillDetailsScreen(
                             referenceNumber: _billNumberController.text,
                           ),
                         ),

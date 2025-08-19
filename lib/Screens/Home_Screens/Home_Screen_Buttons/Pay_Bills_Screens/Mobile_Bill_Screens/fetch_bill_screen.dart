@@ -4,31 +4,28 @@ import 'package:mobile_banking/Common_Widgets/custom_textfield.dart';
 
 import 'bill_detail_screen.dart';
 
-class FetchElectricBillScreen extends StatefulWidget {
-  const FetchElectricBillScreen({super.key});
+class FetchMobileBillScreen extends StatefulWidget {
+  const FetchMobileBillScreen({super.key});
 
   @override
-  State<FetchElectricBillScreen> createState() => _FetchElectricBillScreenState();
+  State<FetchMobileBillScreen> createState() => _FetchMobileBillScreenState();
 }
 
-class _FetchElectricBillScreenState extends State<FetchElectricBillScreen> {
+class _FetchMobileBillScreenState extends State<FetchMobileBillScreen> {
   final TextEditingController _companyNameController = TextEditingController();
   final TextEditingController _billNumberController = TextEditingController();
 
   bool _isFormValid = false;
 
-  final List<String> companies = [
-    "LESCO - Lahore Electric Supply Company",
-    "MEPCO - Multan Electric Power Company",
-    "GEPCO - Gujranwala Electric Power Company",
-    "FESCO - Faisalabad Electric Supply Company",
-    "PESCO - Peshawar Electric Supply Company",
-    "QESCO - Quetta Electric Supply Company",
-    "IESCO - Islamabad Electric Supply Company",
-    "HESCO - Hyderabad Electric Supply Company",
-    "SEPCO - Sukkur Electric Power Company",
-    "KE - K-Electric (Karachi)",
+  final List<String> mobileCompanies = [
+    "Jazz - Mobilink Pakistan",
+    "Zong 4G - CMPak Limited",
+    "Telenor Pakistan",
+    "Ufone 4G - Pak Telecom Mobile Limited",
+    "SCO - Special Communications Organization (Azad Kashmir & Gilgit Baltistan)",
   ];
+
+
 
   @override
   void initState() {
@@ -40,7 +37,7 @@ class _FetchElectricBillScreenState extends State<FetchElectricBillScreen> {
   void _validate() {
     setState(() {
       _isFormValid = _companyNameController.text.isNotEmpty &&
-          _billNumberController.text.isNotEmpty&&_billNumberController.text.length==14;
+          _billNumberController.text.isNotEmpty&&_billNumberController.text.length==11;
     });
   }
 
@@ -57,13 +54,13 @@ class _FetchElectricBillScreenState extends State<FetchElectricBillScreen> {
             width: double.maxFinite,
             child: ListView.builder(
               shrinkWrap: true,
-              itemCount: companies.length,
+              itemCount: mobileCompanies.length,
               itemBuilder: (context, index) {
                 return ListTile(
-                  title: Text(companies[index]),
+                  title: Text(mobileCompanies[index]),
                   onTap: () {
                     setState(() {
-                      _companyNameController.text = companies[index];
+                      _companyNameController.text = mobileCompanies[index];
                     });
                     Navigator.pop(context);
                   },
@@ -131,7 +128,7 @@ class _FetchElectricBillScreenState extends State<FetchElectricBillScreen> {
                   onTapSuffix: _showCompanyDialog,
                 ),
                 const SizedBox(height: 16),
-                Text('Bill reference',style: TextStyle(
+                Text('Mobile number',style: TextStyle(
                   fontSize: 14,
                   fontWeight: FontWeight.bold,
                   color: Colors.grey[600],
@@ -140,7 +137,7 @@ class _FetchElectricBillScreenState extends State<FetchElectricBillScreen> {
                 const SizedBox(height: 10),
                 CustomTextField(
                     controller: _billNumberController,
-                    hintText: 'Enter bill number'),
+                    hintText: 'Enter mobile number'),
                 const SizedBox(height: 20),
                 Text('please select correct reference number to fetch the bill',
                 style: TextStyle(
@@ -167,7 +164,7 @@ class _FetchElectricBillScreenState extends State<FetchElectricBillScreen> {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => ElectricBillDetailsScreen(
+                          builder: (context) => MobileBillDetailsScreen(
                             referenceNumber: _billNumberController.text,
                           ),
                         ),

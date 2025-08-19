@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
 
 Widget customSearchContainer({
-   title,
-  subTitle,
-   icon,
-   onPress,
+  required String title,
+  required String subTitle,
+  required String icon,
+  required VoidCallback onPress,
 }) {
   return Container(
     height: 110,
     width: double.infinity,
     decoration: BoxDecoration(
       color: Colors.white,
-      borderRadius: BorderRadius.circular(12), // optional: rounded corners
+      borderRadius: BorderRadius.circular(12),
       boxShadow: [
         BoxShadow(
           color: Colors.black12,
@@ -23,41 +23,46 @@ Widget customSearchContainer({
     child: TextButton(
       onPressed: onPress,
       style: TextButton.styleFrom(
-        padding: EdgeInsets.zero, // remove default padding
+        padding: EdgeInsets.zero,
       ),
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              Padding(
-                padding: const EdgeInsets.only(top: 12,left: 12),
-                child: Text(
-                  title,
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    color: Colors.black87,
-                    fontSize: 16,
-                    fontWeight: FontWeight.bold,
+          /// <-- FIXED PART
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(left: 12),
+                  child: Text(
+                    title,
+                    style: const TextStyle(
+                      color: Colors.black87,
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                    ),
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
                   ),
-                  maxLines: 1,
                 ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(top: 12.0,left: 12),
-                child: Text(
-                  subTitle,
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    color: Colors.grey[400],
-                    fontSize: 14,
+                Padding(
+                  padding: const EdgeInsets.only(top: 8.0, left: 12),
+                  child: Text(
+                    subTitle,
+                    style: TextStyle(
+                      color: Colors.grey[600],
+                      fontSize: 14,
+                    ),
+                    maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
                   ),
-                  maxLines: 1,
                 ),
-              ),
               ],
+            ),
           ),
+
+          /// Image on right side
           Padding(
             padding: const EdgeInsets.only(right: 12.0),
             child: Image.asset(

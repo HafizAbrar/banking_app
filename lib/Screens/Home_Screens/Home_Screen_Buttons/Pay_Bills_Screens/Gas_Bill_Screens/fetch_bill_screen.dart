@@ -4,31 +4,32 @@ import 'package:mobile_banking/Common_Widgets/custom_textfield.dart';
 
 import 'bill_detail_screen.dart';
 
-class FetchElectricBillScreen extends StatefulWidget {
-  const FetchElectricBillScreen({super.key});
+class FetchGasBillScreen extends StatefulWidget {
+  const FetchGasBillScreen({super.key});
 
   @override
-  State<FetchElectricBillScreen> createState() => _FetchElectricBillScreenState();
+  State<FetchGasBillScreen> createState() => _FetchGasBillScreenState();
 }
 
-class _FetchElectricBillScreenState extends State<FetchElectricBillScreen> {
+class _FetchGasBillScreenState extends State<FetchGasBillScreen> {
   final TextEditingController _companyNameController = TextEditingController();
   final TextEditingController _billNumberController = TextEditingController();
 
   bool _isFormValid = false;
 
-  final List<String> companies = [
-    "LESCO - Lahore Electric Supply Company",
-    "MEPCO - Multan Electric Power Company",
-    "GEPCO - Gujranwala Electric Power Company",
-    "FESCO - Faisalabad Electric Supply Company",
-    "PESCO - Peshawar Electric Supply Company",
-    "QESCO - Quetta Electric Supply Company",
-    "IESCO - Islamabad Electric Supply Company",
-    "HESCO - Hyderabad Electric Supply Company",
-    "SEPCO - Sukkur Electric Power Company",
-    "KE - K-Electric (Karachi)",
+  final List<String> gasCompanies = [
+    "SSGC - Sui Southern Gas Company",
+    "SNGPL - Sui Northern Gas Pipelines Limited",
+    "PGPC - Pakistan GasPort Consortium Limited",
+    "Engro Elengy Terminal (LNG Import)",
+    "PLL - Pakistan LNG Limited",
+    "PPL - Pakistan Petroleum Limited",
+    "OGDCL - Oil & Gas Development Company Limited",
+    "Mari Petroleum Company Limited",
+    "GHPL - Government Holdings (Private) Limited",
+    "KUFPEC Pakistan (Kuwait Foreign Petroleum Exploration)",
   ];
+
 
   @override
   void initState() {
@@ -40,7 +41,7 @@ class _FetchElectricBillScreenState extends State<FetchElectricBillScreen> {
   void _validate() {
     setState(() {
       _isFormValid = _companyNameController.text.isNotEmpty &&
-          _billNumberController.text.isNotEmpty&&_billNumberController.text.length==14;
+          _billNumberController.text.isNotEmpty&&_billNumberController.text.length==11;
     });
   }
 
@@ -57,13 +58,13 @@ class _FetchElectricBillScreenState extends State<FetchElectricBillScreen> {
             width: double.maxFinite,
             child: ListView.builder(
               shrinkWrap: true,
-              itemCount: companies.length,
+              itemCount: gasCompanies.length,
               itemBuilder: (context, index) {
                 return ListTile(
-                  title: Text(companies[index]),
+                  title: Text(gasCompanies[index]),
                   onTap: () {
                     setState(() {
-                      _companyNameController.text = companies[index];
+                      _companyNameController.text = gasCompanies[index];
                     });
                     Navigator.pop(context);
                   },
@@ -167,7 +168,7 @@ class _FetchElectricBillScreenState extends State<FetchElectricBillScreen> {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => ElectricBillDetailsScreen(
+                          builder: (context) => GasBillDetailsScreen(
                             referenceNumber: _billNumberController.text,
                           ),
                         ),
