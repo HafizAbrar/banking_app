@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mobile_banking/Screens/Home_Screens/Home_Screen_Buttons/Mobile_Recharge_Screens/recharge_screen.dart';
+import 'package:mobile_banking/Screens/Home_Screens/Home_Screen_Buttons/Save_Online_Screens/online_saving_account_screen.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 import '../../Common_Widgets/custom_button.dart';
@@ -124,7 +125,9 @@ class _HomeScreenState extends State<HomeScreen> {
                         Navigator.push(context, MaterialPageRoute(builder: (context)=> BillPaymentMainScreen()));
                       }),
                       SizedBox(width: 10,),
-                      customButton(title: 'Save Online', icon:'assets/icons/online.png' , onPress: (){}),
+                      customButton(title: 'Save Online', icon:'assets/icons/online.png' , onPress: (){
+                        Navigator.push(context, MaterialPageRoute(builder: (context)=> SavingAccountScreen()));
+                      }),
                     ],
                   ),
                   SizedBox(height: 20,),

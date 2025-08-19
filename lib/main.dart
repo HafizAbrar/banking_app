@@ -39,7 +39,7 @@ class MyApp extends StatelessWidget {
         primaryColor: Colors.blue[900],
         scaffoldBackgroundColor: Colors.blue[900],
       ),
-      home: HomeNavigationScreen(),
+      home: SignInScreen(),
     );
   }
 }
